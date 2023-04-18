@@ -8,14 +8,15 @@
 // })()
 
 //const { uuidv4 } = require("sequelize");
-
+"use strict";
 (()=>{
     const helper = require("../../common/index")
     const date  = new Date().getTime()
     module.exports = async(call) => {
        // uuid='${uuidv4()}',
        
-      let sqlquery = `UPDATE students SET firstName='${call.firstName}',lastName='${call.lastName}',email='${call.email}',updatedAt='${date}' WHERE uuid='${call.uuid}'`; 
+      try {
+        let sqlquery = `UPDATE students SET firstName='${call.firstName}',lastName='${call.lastName}',email='${call.email}',updatedAt='${date}',Password='${call.Password}' WHERE uuid='${call.uuid}'`; 
        let result = await helper.mysqlHelper.query(sqlquery); 
 
        if(result[0].affectedRows>0){
@@ -24,7 +25,11 @@
     else{
         return false
     }
-           
+          
+         } catch (error) {
+            console.log(eror)
+        
+      } 
        
-    }
+    };
 })()

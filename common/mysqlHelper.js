@@ -1,3 +1,4 @@
+"use strict";
 const mysql = require('mysql2/promise');
 ((mysqlHelper)=>{
     let dbClient = null;
